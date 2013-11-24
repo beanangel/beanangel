@@ -9,7 +9,7 @@ Install MongoDB with:
 
 	$ brew install mongodb
 
-Visit nodejs.org to install node and NPM
+Visit http://nodejs.org/ to install node and NPM
 
 
 Install phantomJS with:
