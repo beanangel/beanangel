@@ -38,6 +38,10 @@ Install marionette generator
 
 	$ npm install (-g) generator-marionette
 
+Finally install the local npm and bower dependencies
+
+	$ npm install
+	$ bower update
 
 
 Run
