@@ -3,13 +3,13 @@ Be An Angel
 
 Install
 -------
-First make sure you have MongoDB, Node, Npm, Yeoman, Bower and Grunt installed.
+First make sure you have MongoDB, Node.js, npm, Yeoman, Bower and Grunt installed.
 
 Install MongoDB with:
 
 	$ brew install mongodb
 
-Visit http://nodejs.org/ to install node and NPM
+Visit http://nodejs.org/ to install node and npm.
 
 
 Install phantomJS with:
