@@ -1,10 +1,11 @@
 define([
 	'backbone',
 	'communicator',
+	'leaflet',
 	'hbs!tmpl/welcome'
 ],
 
-function( Backbone, Communicator, Welcome_tmpl ) {
+function( Backbone, Communicator, Leaflet, Welcome_tmpl ) {
     'use strict';
 
 	var welcomeTmpl = Welcome_tmpl;
