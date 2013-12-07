@@ -42,5 +42,7 @@
   },
   "engines": {
     "node": ">=0.8.0"
-  }
+  },
+  "readmeFilename": "README.md",
+  "repository": "https://github.com/beanangel/beanangel.git"
 }
