@@ -1,7 +1,7 @@
 define([
 	'backbone',
 	'leaflet',
-	'leaflet_providers'
+	'vendor/leaflet-providers'
 ],
 function( Backbone, Leaflet ){
     'use strict';
@@ -11,7 +11,8 @@ function( Backbone, Leaflet ){
 		id: 'map',
 
 		onShow: function() {
-			var map = Leaflet.map('map').setView([50.117716, 8.679543], 13);
+			var location = [50.13, 8.67]; // Frankfurt
+			var map = Leaflet.map('map').setView(location, 13);
 			Leaflet.tileLayer.provider("Esri.WorldStreetMap").addTo(map);
 		}
 	});
