@@ -46,7 +46,8 @@ require.config({
         hbs: '../bower_components/require-handlebars-plugin/hbs',
 
 		/* mapping stuff */
-		leaflet: "../bower_components/leaflet/leaflet"
+		leaflet: "../bower_components/leaflet/leaflet",
+		leaflet_providers: "../bower_components/leaflet/leaflet-providers"
     },
 
     hbs: {
