@@ -1,23 +1,22 @@
 define([
 	'backbone',
 	'views/mapView',
+	'views/toolView',
 	'communicator',
 	'hbs!tmpl/map_app'
 ],
 
-function( Backbone, MapView, Communicator, Map_tmpl ) {
+function( Backbone, MapView, ToolView, Communicator, Map_tmpl ) {
 	return Backbone.Marionette.Layout.extend({
 		template: Map_tmpl,
 		id: "map-app",
 
 		regions: {
 			search: "#search-region",
-			map: "#map-region"
+			map: "#map-region",
+			tools: "#tools-region"
 		},
 
-		events: {
-			"click #locator": "onLocatorClick"
-		},
 
 		onShow: function() {
 			$('#main').prepend(this.$el);
@@ -28,15 +27,12 @@ function( Backbone, MapView, Communicator, Map_tmpl ) {
 			this.mapView = new MapView();
 			this.map.show(this.mapView);
 
-			// place locator button
-			this.mapView.$el.after('<div id="locator">');
+			// setup map tools
+			this.toolView = new ToolView();
+			this.tools.show(this.toolView);
 
 			// publish
 			Communicator.mediator.trigger("MAP:START");
-		},
-
-		onLocatorClick: function() {
-			this.mapView.locate();
 		}
 	});
 });

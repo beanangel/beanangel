@@ -1,10 +1,11 @@
 define([
 	'backbone',
 	'leaflet',
+	'communicator',
 	'underscore',
 	'vendor/leaflet-providers'
 ],
-function( Backbone, Leaflet, _ ){
+function( Backbone, Leaflet, Communicator, _ ){
     'use strict';
 
 	return Backbone.View.extend({
@@ -19,7 +20,8 @@ function( Backbone, Leaflet, _ ){
 			Leaflet.tileLayer.provider("Esri.WorldStreetMap").addTo(this.map);
 
 			// register events
-			this.map.on('locationfound', _.bind(this.onLocationFound, this));
+			this.map.on('locationfound', this.onLocationFound, this);
+			Communicator.mediator.on("LOCATOR:CLICK", this.locate, this);
 		},
 
 		locate: function() {
