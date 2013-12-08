@@ -27,18 +27,17 @@ body {
   height: 100%
 }
 
-#mark_position {
-  width: 50px;
+.btn {
+  width: 65px;
   height: 50px;
   position: absolute;
-  right: 105px;
   bottom: 50px;
 }
 
+#mark_position {
+  right: 125px;
+}
+
 #locate {
-  width: 50px;
-  height: 50px;
-  position: absolute;
   right: 50px;
-  bottom: 50px;
 }
