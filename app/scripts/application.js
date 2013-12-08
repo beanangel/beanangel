@@ -2,13 +2,13 @@ define([
 	'backbone',
 	'communicator',
 	'layouts/mapLayout',
-	'hbs!tmpl/welcome'
+	'hbs!tmpl/main'
 ],
 
-function( Backbone, Communicator, MapApp, Welcome_tmpl ) {
+function( Backbone, Communicator, MapApp, Main_tmpl ) {
     'use strict';
 
-	var welcomeTmpl = Welcome_tmpl;
+	var mainTmpl = Main_tmpl;
 
 	var App = new Backbone.Marionette.Application();
 
@@ -21,7 +21,7 @@ function( Backbone, Communicator, MapApp, Welcome_tmpl ) {
 
 	/* Add initializers here */
 	App.addInitializer( function () {
-		document.body.innerHTML = welcomeTmpl({ success: "CONGRATS!" });
+		document.body.innerHTML = mainTmpl();
 		Communicator.mediator.trigger("APP:START");
 		App.map.show(App.MapApp);
 		App.MapApp.start();
