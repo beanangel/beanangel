@@ -1,15 +1,28 @@
 @import 'sass-bootstrap/lib/bootstrap';
 
-#main {
-    margin: 0 auto 0 auto;
-    width: 640px;
+html {
+  height: 100%;
+}
+
+body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+#main, #map-app {
+  height: 100%;
 }
 
 #search-region {
   background-color: #ffcaca;
-  height: 30px;
+  height: 5%;
+}
+
+#map-region {
+  height: 95%;
 }
 
 #map {
-  height: 480px;
+  height: 100%
 }
