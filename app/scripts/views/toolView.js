@@ -9,7 +9,8 @@ function( Backbone, Communicator, MapTools_tmpl ){
 	return Backbone.Marionette.View.extend({
 
 		events: {
-			"click #locator": "onLocatorClick"
+			"click #locate": "onLocatorClick",
+			"click #mark_position": "onMarkPositionClick"
 		},
 
 		onShow: function() {
@@ -18,6 +19,10 @@ function( Backbone, Communicator, MapTools_tmpl ){
 
 		onLocatorClick: function() {
 			Communicator.mediator.trigger("LOCATOR:CLICK");
+		},
+
+		onMarkPositionClick: function() {
+			Communicator.mediator.trigger("MARK_POSITION:CLICK");
 		}
 	});
 });

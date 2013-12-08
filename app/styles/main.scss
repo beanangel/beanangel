@@ -27,11 +27,18 @@ body {
   height: 100%
 }
 
-#locator {
+#mark_position {
+  width: 50px;
+  height: 50px;
+  position: absolute;
+  right: 105px;
+  bottom: 50px;
+}
+
+#locate {
   width: 50px;
   height: 50px;
   position: absolute;
   right: 50px;
   bottom: 50px;
-  background-color: #FF0000;
 }

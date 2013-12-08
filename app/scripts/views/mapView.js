@@ -22,10 +22,21 @@ function( Backbone, Leaflet, Communicator, _ ){
 			// register events
 			this.map.on('locationfound', this.onLocationFound, this);
 			Communicator.mediator.on("LOCATOR:CLICK", this.locate, this);
+			Communicator.mediator.on("MARK_POSITION:CLICK", this.mark, this);
 		},
 
 		locate: function() {
 			this.map.locate();
+		},
+
+		mark: function() {
+			this.map.once('moveend', this.setMarkerAtCurPos, this);
+			this.map.locate();
+		},
+
+		setMarkerAtCurPos: function(e) {
+			var curPos = this.map.getCenter();
+			new Leaflet.Marker(curPos).addTo(this.map);
 		},
 
 		onLocationFound: function(e) {
