@@ -21,6 +21,7 @@ function( Backbone, Leaflet, Communicator, _ ){
 
 			// register events
 			this.map.on('locationfound', this.onLocationFound, this);
+			this.map.on('locationerror', this.onLocationError, this);
 			Communicator.mediator.on("LOCATOR:CLICK", this.locate, this);
 			Communicator.mediator.on("MARK_POSITION:CLICK", this.mark, this);
 		},
@@ -42,6 +43,11 @@ function( Backbone, Leaflet, Communicator, _ ){
 		onLocationFound: function(e) {
 			// animate to that location at closest zoom level
 			this.map.setView(e.latlng, Infinity, {animate: true});
+		},
+
+		onLocationError: function(e) {
+			alert(e.message);
+			console.log(e.message, e.code);
 		}
 	});
 });
