@@ -13,17 +13,9 @@ function( Backbone, Leaflet, Communicator, _ ){
 		id: 'map',
 
 		onShow: function() {
-			// setup map
-			var location = [50.13, 8.67]; // Frankfurt
-			this.map = Leaflet.map('map');
-			this.map.setView(location, 13);
-			Leaflet.tileLayer.provider("Esri.WorldStreetMap").addTo(this.map);
+			this.setupMap();
+			this.registerEvents();
 
-			// register events
-			this.map.on('locationfound', this.onLocationFound, this);
-			this.map.on('locationerror', this.onLocationError, this);
-			Communicator.mediator.on("LOCATOR:CLICK", this.locate, this);
-			Communicator.mediator.on("MARK_POSITION:CLICK", this.mark, this);
 		},
 
 		locate: function() {
@@ -48,6 +40,22 @@ function( Backbone, Leaflet, Communicator, _ ){
 		onLocationError: function(e) {
 			alert(e.message);
 			console.log(e.message, e.code);
+		},
+
+
+		// TODO make private
+		setupMap: function() {
+			var location = [50.13, 8.67]; // Frankfurt
+			this.map = Leaflet.map('map');
+			this.map.setView(location, 13);
+			Leaflet.tileLayer.provider("Esri.WorldStreetMap").addTo(this.map);
+		},
+
+		registerEvents: function() {
+			this.map.on('locationfound', this.onLocationFound, this);
+			this.map.on('locationerror', this.onLocationError, this);
+			Communicator.mediator.on("LOCATOR:CLICK", this.locate, this);
+			Communicator.mediator.on("MARK_POSITION:CLICK", this.mark, this);
 		}
 	});
 });
