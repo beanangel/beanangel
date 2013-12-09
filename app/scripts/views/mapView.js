@@ -15,7 +15,7 @@ function( Backbone, Leaflet, Communicator, _ ){
 		onShow: function() {
 			this.setupMap();
 			this.registerEvents();
-
+			this.placeRequestedMarkers();
 		},
 
 		locate: function() {
@@ -42,6 +42,10 @@ function( Backbone, Leaflet, Communicator, _ ){
 			console.log(e.message, e.code);
 		},
 
+		addSpots: function(spots) {
+			this.geoJSON.addData(spots.toJSON());
+		},
+
 
 		// TODO make private
 		setupMap: function() {
@@ -49,6 +53,9 @@ function( Backbone, Leaflet, Communicator, _ ){
 			this.map = Leaflet.map('map');
 			this.map.setView(location, 13);
 			Leaflet.tileLayer.provider("Esri.WorldStreetMap").addTo(this.map);
+
+			// add a GeoJSON layer
+			this.geoJSON = Leaflet.geoJson().addTo(this.map);
 		},
 
 		registerEvents: function() {
@@ -56,6 +63,10 @@ function( Backbone, Leaflet, Communicator, _ ){
 			this.map.on('locationerror', this.onLocationError, this);
 			Communicator.mediator.on("LOCATOR:CLICK", this.locate, this);
 			Communicator.mediator.on("MARK_POSITION:CLICK", this.mark, this);
+		},
+
+		placeRequestedMarkers: function() {
+			this.spotsRequest.done(_.bind(this.addSpots, this));
 		}
 	});
 });
