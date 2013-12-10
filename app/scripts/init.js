@@ -3,8 +3,7 @@ require.config({
     baseUrl: "/scripts",
 
     /* starting point for application */
-    deps: ['backbone.marionette', 'bootstrap', 'main'],
-
+    deps: ['backbone.marionette', 'bootstrap', 'leaflet', 'main'],
 
     shim: {
         backbone: {
@@ -17,6 +16,10 @@ require.config({
         bootstrap: {
             deps: ['jquery'],
             exports: 'jquery'
+        },
+        leafletProviders: {
+            deps: ['leaflet'],
+            exports: 'leaflet-providers'
         }
     },
 
@@ -45,9 +48,9 @@ require.config({
         json2: '../bower_components/require-handlebars-plugin/hbs/json2',
         hbs: '../bower_components/require-handlebars-plugin/hbs',
 
-		/* mapping stuff */
-		leaflet: "../bower_components/leaflet/leaflet",
-		leaflet_providers: "../bower_components/leaflet/leaflet-providers"
+	/* mapping stuff */
+	leaflet: "../bower_components/leaflet/leaflet",
+	leaflet_providers: "leaflet-providers"
     },
 
     hbs: {
