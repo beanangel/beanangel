@@ -1,11 +1,10 @@
 define([
 	'backbone',
-	'leaflet',
 	'communicator',
 	'underscore',
-	'vendor/leaflet-providers'
+	'leaflet-providers'
 ],
-function( Backbone, L, Communicator, _, LeafletProviders ){
+function( Backbone, Communicator, _, LeafletProviders ){
     'use strict';
 
 	return Backbone.View.extend({
