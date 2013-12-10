@@ -298,7 +298,6 @@ module.exports = function (grunt) {
             'connect:testserver',
             'express:dev',
             'exec',
-            'open',
             'watch'
         ]);
     });
