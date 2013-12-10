@@ -17,6 +17,10 @@ require.config({
         bootstrap: {
             deps: ['jquery'],
             exports: 'jquery'
+        },
+        leaflet_providers: {
+            deps: ['leaflet'],
+            exports: 'L'
         }
     },
 
