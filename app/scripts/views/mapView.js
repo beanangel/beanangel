@@ -5,7 +5,7 @@ define([
 	'underscore',
 	'vendor/leaflet-providers'
 ],
-function( Backbone, L, Communicator, _ ){
+function( Backbone, L, Communicator, _, LeafletProviders ){
     'use strict';
 
 	return Backbone.View.extend({
@@ -29,7 +29,7 @@ function( Backbone, L, Communicator, _ ){
 
 		setMarkerAtCurPos: function(e) {
 			var curPos = this.map.getCenter();
-			new Leaflet.Marker(curPos).addTo(this.map);
+			new L.Marker(curPos).addTo(this.map);
 		},
 
 		onLocationFound: function(e) {
