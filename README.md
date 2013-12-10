@@ -1,6 +1,14 @@
 Be An Angel
 ===========
 
+Milestones
+----------
+
+### Apple Pie ####
+
+Will support the following: Map is displayed, let the app locate you (or pull up an address form), optionally upload a photo.
+
+
 Install
 -------
 First make sure you have MongoDB, Node.js, npm, Yeoman, Bower and Grunt installed.
