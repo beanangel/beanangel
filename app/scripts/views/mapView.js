@@ -51,7 +51,7 @@ function( Backbone, Communicator, _, LeafletProviders ){
 			var location = [50.13, 8.67]; // Frankfurt
 			this.map = L.map('map');
 			this.map.setView(location, 13);
-			L.tileLayer.provider("Esri.WorldStreetMap").addTo(this.map);
+			L.tileLayer.provider("Nokia.normalDay").addTo(this.map);
 
 			// add a GeoJSON layer
 			this.geoJSON = L.geoJson().addTo(this.map);
