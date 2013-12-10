@@ -5,7 +5,7 @@ define([
 	'underscore',
 	'vendor/leaflet-providers'
 ],
-function( Backbone, Leaflet, Communicator, _, LeafletProviders ){
+function( Backbone, L, Communicator, _ ){
     'use strict';
 
 	return Backbone.View.extend({
@@ -50,12 +50,12 @@ function( Backbone, Leaflet, Communicator, _, LeafletProviders ){
 		// TODO make private
 		setupMap: function() {
 			var location = [50.13, 8.67]; // Frankfurt
-			this.map = Leaflet.map('map');
+			this.map = L.map('map');
 			this.map.setView(location, 13);
-			Leaflet.tileLayer.provider("Esri.WorldStreetMap").addTo(this.map);
+			L.tileLayer.provider("Esri.WorldStreetMap").addTo(this.map);
 
 			// add a GeoJSON layer
-			this.geoJSON = Leaflet.geoJson().addTo(this.map);
+			this.geoJSON = L.geoJson().addTo(this.map);
 		},
 
 		registerEvents: function() {
