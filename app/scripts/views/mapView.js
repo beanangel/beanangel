@@ -51,7 +51,7 @@ function( Backbone, Communicator, _, LeafletProviders ){
 
 		// TODO make private
 		setupMap: function() {
-			var location = [50.11, 8.67]; // Frankfurt
+			var location = [50.119, 8.685]; // Frankfurt
 			this.map = L.map('map');
 			this.map.setView(location, 13);
 			L.tileLayer.provider("Nokia.normalDay").addTo(this.map);
