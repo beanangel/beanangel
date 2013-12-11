@@ -3,7 +3,7 @@ require.config({
     baseUrl: "/scripts",
 
     /* starting point for application */
-    deps: ['backbone.marionette', 'bootstrap', 'leaflet', 'main'],
+    deps: ['backbone.marionette', 'bootstrap', 'main'],
 
     shim: {
         backbone: {
@@ -20,7 +20,7 @@ require.config({
         leaflet: {
             exports: 'L'
         },
-        leafletProviders: ['leaflet']
+        leaflet_providers: ['leaflet']
     },
 
     paths: {
