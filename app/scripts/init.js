@@ -17,10 +17,10 @@ require.config({
             deps: ['jquery'],
             exports: 'jquery'
         },
-        leafletProviders: {
-            deps: ['leaflet'],
-            exports: 'leaflet-providers'
-        }
+        leaflet: {
+            exports: 'L'
+        },
+        leafletProviders: ['leaflet']
     },
 
     paths: {
@@ -50,7 +50,7 @@ require.config({
 
 	/* mapping stuff */
 	leaflet: "../bower_components/leaflet/leaflet",
-	leaflet_providers: "leaflet-providers"
+	leaflet_providers: "../bower_components/leaflet-providers/leaflet-providers"
     },
 
     hbs: {
