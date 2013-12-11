@@ -37,6 +37,9 @@ function( Backbone, Communicator, _, LeafletProviders ){
 		},
 
 		onLocationError: function(e) {
+			// make sure a marker is not set for the case where mark() was called and locate() failed
+			this.map.off('moveend', this.setMarkerAtCurPos, this);
+
 			alert(e.message);
 			console.log(e.message, e.code);
 		},
