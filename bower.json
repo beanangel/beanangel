@@ -2,7 +2,7 @@
   "name": "be-an-angel",
   "version": "0.0.0",
   "dependencies": {
-    "sass-bootstrap": "~2.3.0",
+    "sass-bootstrap": "~2.3.2",
     "jquery": "~1.9.0",
     "requirejs": "~2.1.5",
     "requirejs-text": "~2.0.5",
@@ -16,10 +16,11 @@
     "mocha": "~1.12.0",
     "chai": "~1.7.2",
     "sinon": "~1.7.3",
-    "leaflet": "git@github.com:vperron/leaflet-dist.git#~0.7.0"
+    "leaflet": "git@github.com:vperron/leaflet-dist.git#~0.7.0",
+  	"leaflet-providers": "~1.0.1",
+  	"bootstrap-file-input": "*"
   },
   "devDependencies": {
-    "leaflet-providers": "~1.0.1"
   },
   "directory": "bower_components"
 }
