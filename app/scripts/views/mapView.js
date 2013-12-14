@@ -5,7 +5,7 @@ define([
 	'leaflet',
 	'leaflet_providers',
 	'hbs!tmpl/form',
-	'bootstrap-file-input'
+	'bootstrap-fancyfile'
 ],
 function( Backbone, Communicator, _, L, LeafletProviders, Form_tmpl ){
     'use strict';
@@ -68,8 +68,15 @@ function( Backbone, Communicator, _, L, LeafletProviders, Form_tmpl ){
 		onEachFeatureSetupPopup: function(feature, layer) {
 			if (feature.properties) {
 				layer.bindPopup(Form_tmpl(feature.properties));
-				$('input[type=file]').bootstrapFileInput();
 			}
+			layer.on('click', function() {
+				$('input[type=file]').fancyfile({
+					placeholder: "Durchsuchen ...",
+					text: '',
+					icon: false
+				});
+				$('input[type=file]').hide();
+			});
 		},
 
 		registerEvents: function() {

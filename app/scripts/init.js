@@ -20,11 +20,7 @@ require.config({
         leaflet: {
             exports: 'L'
         },
-        leaflet_providers: ['leaflet'],
-        "bootstrap-file-input": { 
-            deps: ['jquery'],
-            exports: 'jquery'
-        }
+        leaflet_providers: ['leaflet']
     },
 
     paths: {
@@ -52,12 +48,12 @@ require.config({
         json2: '../bower_components/require-handlebars-plugin/hbs/json2',
         hbs: '../bower_components/require-handlebars-plugin/hbs',
 
-	/* mapping related */
-	leaflet: "../bower_components/leaflet/leaflet",
-	leaflet_providers: "../bower_components/leaflet-providers/leaflet-providers",
+        /* mapping related */
+        leaflet: "../bower_components/leaflet/leaflet",
+        leaflet_providers: "../bower_components/leaflet-providers/leaflet-providers",
 
-	/* form related*/
-	"bootstrap-file-input": "../bower_components/bootstrap-file-input/bootstrap.file-input"
+        /* form related*/
+		"bootstrap-fancyfile": "../bower_components/bootstrap-fancyfile/js/bootstrap-fancyfile"
     },
 
     hbs: {
