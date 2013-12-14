@@ -22,7 +22,8 @@ require.config({
         },
         leaflet_providers: ['leaflet'],
         "bootstrap-file-input": { 
-            deps: ['jquery']
+            deps: ['jquery'],
+            exports: 'jquery'
         }
     },
 
