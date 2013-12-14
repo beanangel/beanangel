@@ -44,6 +44,28 @@ body {
   right: 25px;
 }
 
+#spot_form, .leaflet-popup-content {
+  width: 21.8em !important;
+}
+
+.form-horizontal .control-group {
+  margin-bottom: 12px;
+}
+
+.form-horizontal .control-label {
+  width: 65px;
+  font-size: 0.9em;
+}
+
+.form-horizontal .controls {
+  margin-left: 73px;
+  width: 190px;
+}
+
+input, textarea, .uneditable-input {
+  width: 180px;
+}
+
 .spot_title {
   font-size: 14px;
 }
