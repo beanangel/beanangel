@@ -4,7 +4,8 @@ define([
 	'underscore',
 	'leaflet',
 	'leaflet_providers',
-	'hbs!tmpl/form'
+	'hbs!tmpl/form',
+	'bootstrap-file-input'
 ],
 function( Backbone, Communicator, _, L, LeafletProviders, Form_tmpl ){
     'use strict';
@@ -67,6 +68,7 @@ function( Backbone, Communicator, _, L, LeafletProviders, Form_tmpl ){
 		onEachFeatureSetupPopup: function(feature, layer) {
 			if (feature.properties) {
 				layer.bindPopup(Form_tmpl(feature.properties));
+				$('input[type=file]').bootstrapFileInput();
 			}
 		},
 
