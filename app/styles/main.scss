@@ -27,11 +27,13 @@ body {
   height: 100%
 }
 
-.btn {
-  width: 65px;
-  height: 50px;
-  position: absolute;
-  bottom: 25px;
+#tools-region {
+  .btn {
+    width: 65px;
+    height: 50px;
+    position: absolute;
+    bottom: 25px;
+  }
 }
 
 #mark_position {
