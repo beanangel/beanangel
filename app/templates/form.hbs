@@ -3,6 +3,13 @@
 
 	<form action="" class="form-horizontal">
 		<div class="control-group">
+			<label for="location" class="control-label">Ort</label>
+			<div class="controls">
+				<span class="help-block">Falls der gefundene Punkt nicht so ganz am Ort des Geschehens ist.</span>
+				<input id="location" type="text" placeholder="Bspw. Frankfurt Hauptbahnhof" name="location" class="form-control">
+			</div>
+		</div>
+		<div class="control-group">
 			<label for="photo" class="control-label">Lade ein Foto hoch</label>
 			<div class="controls">
 				<input id="photo" type="file" data-toggle="fancyfile" name="photo" class="form-control">
@@ -12,7 +19,7 @@
 		<div class="control-group">
 			<label for="description" class="control-label">Beschreibung</label>
 			<div class="controls">
-				<input id="description" type="text" placeholder="Beschreibung" name="description" class="form-control">
+				<textarea id="description" placeholder="Beschreibung" rows="3" name="description" class="form-control"></textarea>
 			</div>
 		</div>
 		<div class="control-group">

@@ -50,11 +50,16 @@ body {
 
 .form-horizontal .control-group {
   margin-bottom: 12px;
+
+  .help-block {
+    padding-top: 0.15em;
+  }
 }
 
 .form-horizontal .control-label {
   width: 65px;
-  font-size: 0.9em;
+  font-size: 0.93em;
+  padding-top: inherit;
 }
 
 .form-horizontal .controls {
