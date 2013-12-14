@@ -75,7 +75,6 @@ function( Backbone, Communicator, _, L, LeafletProviders, Form_tmpl ){
 					text: '',
 					icon: false
 				});
-				$('input[type=file]').hide();
 			});
 		},
 
