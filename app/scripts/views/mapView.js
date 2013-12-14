@@ -3,9 +3,10 @@ define([
 	'communicator',
 	'underscore',
 	'leaflet',
-	'leaflet_providers'
+	'leaflet_providers',
+	'hbs!tmpl/form'
 ],
-function( Backbone, Communicator, _, L ){
+function( Backbone, Communicator, _, L, LeafletProviders, Form_tmpl ){
     'use strict';
 
 	return Backbone.View.extend({
@@ -58,7 +59,15 @@ function( Backbone, Communicator, _, L ){
 			L.tileLayer.provider("Nokia.normalDay").addTo(this.map);
 
 			// add a GeoJSON layer
-			this.geoJSON = L.geoJson().addTo(this.map);
+			this.geoJSON = L.geoJson([], {
+				onEachFeature: this.onEachFeatureSetupPopup
+			}).addTo(this.map);
+		},
+
+		onEachFeatureSetupPopup: function(feature, layer) {
+			if (feature.properties) {
+				layer.bindPopup(Form_tmpl(feature.properties));
+			}
 		},
 
 		registerEvents: function() {
