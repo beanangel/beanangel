@@ -7,32 +7,32 @@
 			<label for="location" class="control-label">Ort</label>
 			<div class="controls">
 				<span class="help-block">Falls der gefundene Punkt nicht so ganz am Ort des Geschehens ist.</span>
-				<input id="location" type="text" placeholder="Bspw. Frankfurt Hauptbahnhof" name="location" class="form-control">
+				<input id="location" type="text" placeholder="Bspw. Frankfurt Hauptbahnhof" name="spot[location]" class="form-control">
 			</div>
 		</div>
 		<div class="control-group">
 			<label for="title" class="control-label">Titel <abbr role="presentation" title="erforderlich">*</abbr></label>
 			<div class="controls">
-				<input id="title" type="text" required aria-required="true" placeholder="Geb dem Guten einen Namen" name="title" class="form-control">
+				<input id="title" type="text" required aria-required="true" placeholder="Geb dem Guten einen Namen" name="spot[title]" class="form-control">
 			</div>
 		</div>
 		<div class="control-group">
 			<label for="photo" class="control-label">Lade ein Foto hoch <abbr role="presentation" title="erforderlich">*</abbr></label>
 			<div class="controls">
-				<input id="photo" type="file" required aria-required="true" title="Durchsuchen ..." name="photo" class="form-control">
+				<input id="photo" type="file" required aria-required="true" title="Durchsuchen ..." name="spot[photo]" class="form-control">
 				<span class="help-block">Dieses Foto wird direkt auf der Karte zu sehen sein.</span>
 			</div>
 		</div>
 		<div class="control-group">
 			<label for="description" class="control-label">Text</label>
 			<div class="controls">
-				<textarea id="description" placeholder="Beschreibung" rows="3" name="description" class="form-control"></textarea>
+				<textarea id="description" placeholder="Beschreibung" rows="3" name="spot[description]" class="form-control"></textarea>
 			</div>
 		</div>
 		<div class="control-group">
 			<label for="username" class="control-label">Name <abbr role="presentation" title="erforderlich">*</abbr></label>
 			<div class="controls">
-				<input id="username" type="text" required aria-required="true" placeholder="Ihr/Dein Name" name="username" class="form-control">
+				<input id="username" type="text" required aria-required="true" placeholder="Ihr/Dein Name" name="spot[username]" class="form-control">
 				<span class="help-block">Wird beim Spot gezeigt werden.</span>
 			</div>
 		</div>
