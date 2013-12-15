@@ -17,9 +17,18 @@ function( Backbone, Spot, Communicator, _, L, Form_tmpl ){
 			form: "form"
 		},
 
+		events: {
+			"submit form": "onSubmit"
+		},
+
 		initialize: function(options) {
 			this.model = new Spot(options.feature);
 			this.layerSpot = options.layerSpot;
+		},
+
+		onSubmit: function(event) {
+			event.preventDefault();
+			console.log(this.ui.form.serialize());
 		},
 
 		openPopup: function() {
