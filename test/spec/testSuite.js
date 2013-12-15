@@ -3,9 +3,8 @@ define(function() {
 
 	/* return an array of specs to be run */
 	return {
-		specs: ['spec/exampleTest.js',
+		specs: ['spec/collections/spots.js',
 		'spec/models/spot.js',
-		'spec/collections/spots.js',
 		'spec/views/ToolView.js',
 		'spec/views/mapView.js'
 		]
