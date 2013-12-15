@@ -44,6 +44,10 @@ body {
   right: 25px;
 }
 
+.leaflet-container a {
+  color: inherit !important;
+}
+
 .leaflet-popup-content {
   margin: 13px !important;
 }

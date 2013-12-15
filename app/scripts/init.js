@@ -53,7 +53,7 @@ require.config({
         leaflet_providers: "../bower_components/leaflet-providers/leaflet-providers",
 
         /* form related*/
-		"bootstrap-fancyfile": "../bower_components/bootstrap-fancyfile/js/bootstrap-fancyfile"
+        "bootstrap-file-input": "../bower_components/bootstrap-file-input/bootstrap.file-input"
     },
 
     hbs: {

@@ -5,7 +5,7 @@ define([
 	'underscore',
 	'leaflet',
 	'hbs!tmpl/form',
-	'bootstrap-fancyfile'
+	'bootstrap-file-input'
 ],
 function( Backbone, Spot, Communicator, _, L, Form_tmpl ){
     'use strict';
@@ -29,11 +29,7 @@ function( Backbone, Spot, Communicator, _, L, Form_tmpl ){
 			}
 
 			// enhancing the file input styling has to be done on every render
-			$('input[type=file]').fancyfile({
-				placeholder: "Durchsuchen ...",
-				text: '',
-				icon: false
-			});
+			$('input[type=file]').bootstrapFileInput();
 
 			Communicator.mediator.trigger("FORM:OPEN", this.model.getName());
 		},
