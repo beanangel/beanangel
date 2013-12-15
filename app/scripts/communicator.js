@@ -22,6 +22,17 @@ function( Backbone ) {
 			// like that. But there where articles recommending against a centralized app instance that get's required
 			// too often.
 			this.backendURL = "http://" + location.hostname + ":3000";
+
+
+			this.mediator.on('all', this.logMediatorEvents, this);
+		},
+
+		logMediatorEvents: function(eventName, options) {
+			if(_.isEmpty(options)) {
+				console.log(eventName);
+			} else {
+				console.log(eventName, options);
+			}
 		}
 	});
 
