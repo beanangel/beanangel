@@ -16,6 +16,7 @@ function( $, Backbone, Spots, MapView, ToolView, Communicator, Map_tmpl ) {
 		regions: {
 			search: "#search-region",
 			map: "#map-region",
+			form: "#spot_form", // this doesn't have a div rendered by the Map_tmpl, instead it uses a div that mapView will create
 			tools: "#tools-region"
 		},
 
@@ -33,7 +34,7 @@ function( $, Backbone, Spots, MapView, ToolView, Communicator, Map_tmpl ) {
 			});
 
 			// setup map
-			this.mapView = new MapView();
+			this.mapView = new MapView({formRegion: this.form});
 			this.mapView.spotsRequest = deferred.promise();
 			this.map.show(this.mapView);
 

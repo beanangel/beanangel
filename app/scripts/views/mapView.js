@@ -4,15 +4,18 @@ define([
 	'underscore',
 	'leaflet',
 	'leaflet_providers',
-	'hbs!tmpl/form',
-	'bootstrap-fancyfile'
+	'views/formView'
 ],
-function( Backbone, Communicator, _, L, LeafletProviders, Form_tmpl ){
+function( Backbone, Communicator, _, L, LeafletProviders, FormView ){
     'use strict';
 
 	return Backbone.View.extend({
 
 		id: 'map',
+
+		initialize: function(options) {
+			this.formRegion = options.formRegion;
+		},
 
 		onShow: function() {
 			this.setupMap();
@@ -61,34 +64,26 @@ function( Backbone, Communicator, _, L, LeafletProviders, Form_tmpl ){
 
 			// add a GeoJSON layer
 			this.geoJSON = L.geoJson([], {
-				onEachFeature: this.onEachFeatureSetupPopup
+				onEachFeature: _.bind(this.onEachFeatureSetupPopup, this)
 			}).addTo(this.map);
 		},
 
 		onEachFeatureSetupPopup: function(feature, layer) {
+			var mapView = this;
 			if (feature.properties) {
-				layer.bindPopup(Form_tmpl(feature.properties));
+				layer.on('click', function() {
+					var formView = new FormView({
+						feature: feature,
+						layerSpot: layer
+					});
+					mapView.formRegion.show(formView);
+				});
 			}
-		},
-
-		onFormOpen: function() {
-			$('input[type=file]').fancyfile({
-				placeholder: "Durchsuchen ...",
-				text: '',
-				icon: false
-			});
-			Communicator.mediator.trigger("FORM:OPEN");
-		},
-
-		onFormClose: function() {
-			Communicator.mediator.trigger("FORM:CLOSE");
 		},
 
 		registerEvents: function() {
 			this.map.on('locationfound', this.onLocationFound, this);
 			this.map.on('locationerror', this.onLocationError, this);
-			this.map.on('popupopen', this.onFormOpen, this);
-			this.map.on('popupclose', this.onFormClose, this);
 			Communicator.mediator.on("LOCATOR:CLICK", this.locate, this);
 			Communicator.mediator.on("MARK_POSITION:CLICK", this.mark, this);
 		},
