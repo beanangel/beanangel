@@ -10,15 +10,15 @@
 			</div>
 		</div>
 		<div class="control-group">
-			<label for="title" class="control-label">Titel</label>
+			<label for="title" class="control-label">Titel <abbr role="presentation" title="erforderlich">*</abbr></label>
 			<div class="controls">
-				<input id="title" type="text" placeholder="Geb dem Guten einen Namen" name="title" class="form-control">
+				<input id="title" type="text" required aria-required="true" placeholder="Geb dem Guten einen Namen" name="title" class="form-control">
 			</div>
 		</div>
 		<div class="control-group">
-			<label for="photo" class="control-label">Lade ein Foto hoch</label>
+			<label for="photo" class="control-label">Lade ein Foto hoch <abbr role="presentation" title="erforderlich">*</abbr></label>
 			<div class="controls">
-				<input id="photo" type="file" data-toggle="fancyfile" name="photo" class="form-control">
+				<input id="photo" type="file" required aria-required="true" data-toggle="fancyfile" name="photo" class="form-control">
 				<span class="help-block">Dieses Foto wird direkt auf der Karte zu sehen sein.</span>
 			</div>
 		</div>
@@ -29,9 +29,10 @@
 			</div>
 		</div>
 		<div class="control-group">
-			<label for="username" class="control-label">Username</label>
+			<label for="username" class="control-label">Name <abbr role="presentation" title="erforderlich">*</abbr></label>
 			<div class="controls">
-				<input id="username" type="text" placeholder="Username" name="username" class="form-control">
+				<input id="username" type="text" required aria-required="true" placeholder="Ihr/Dein Name" name="username" class="form-control">
+				<span class="help-block">Wird beim Spot gezeigt werden.</span>
 			</div>
 		</div>
 		<div class="control-group">
