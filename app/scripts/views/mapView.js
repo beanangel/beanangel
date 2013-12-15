@@ -13,10 +13,6 @@ function( Backbone, Communicator, _, L, LeafletProviders, FormView ){
 
 		id: 'map',
 
-		initialize: function(options) {
-			this.formRegion = options.formRegion;
-		},
-
 		onShow: function() {
 			this.setupMap();
 			this.registerEvents();
@@ -76,7 +72,7 @@ function( Backbone, Communicator, _, L, LeafletProviders, FormView ){
 						feature: feature,
 						layerSpot: layer
 					});
-					mapView.formRegion.show(formView);
+					formView.openPopup();
 				});
 			}
 		},
