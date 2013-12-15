@@ -69,18 +69,20 @@ function( Backbone, Communicator, _, L, LeafletProviders, Form_tmpl ){
 			if (feature.properties) {
 				layer.bindPopup(Form_tmpl(feature.properties));
 			}
-			layer.on('click', function() {
-				$('input[type=file]').fancyfile({
-					placeholder: "Durchsuchen ...",
-					text: '',
-					icon: false
-				});
+		},
+
+		onPopupOpen: function() {
+			$('input[type=file]').fancyfile({
+				placeholder: "Durchsuchen ...",
+				text: '',
+				icon: false
 			});
 		},
 
 		registerEvents: function() {
 			this.map.on('locationfound', this.onLocationFound, this);
 			this.map.on('locationerror', this.onLocationError, this);
+			this.map.on('popupopen', this.onPopupOpen, this);
 			Communicator.mediator.on("LOCATOR:CLICK", this.locate, this);
 			Communicator.mediator.on("MARK_POSITION:CLICK", this.mark, this);
 		},
