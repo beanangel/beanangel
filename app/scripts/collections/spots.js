@@ -1,14 +1,15 @@
 define([
 	'backbone',
-	'models/spot'
+	'models/spot',
+	'communicator'
 ],
-function( Backbone, Spot ) {
+function( Backbone, Spot, Communicator ) {
     'use strict';
 
 	/* Return a collection class definition */
 	return Backbone.Collection.extend({
 		model: Spot,
-		url: "http://" + location.hostname + ":3000/spots",
+		url: Communicator.backendURL + "/spots",
 
 		parse: function(response) {
 			return response.spots;
