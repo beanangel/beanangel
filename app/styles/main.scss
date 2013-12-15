@@ -44,6 +44,10 @@ body {
   right: 25px;
 }
 
+.leaflet-popup-content {
+  margin: 13px 15px !important;
+}
+
 #spot_form, .leaflet-popup-content {
   width: 21.8em !important;
 }
@@ -57,17 +61,16 @@ body {
 }
 
 .form-horizontal .control-label {
-  width: 65px;
+  width: 50px;
   font-size: 0.93em;
 }
 
 .form-horizontal .controls {
-  margin-left: 73px;
-  width: 190px;
+  margin-left: 58px;
 }
 
 input, textarea, .uneditable-input {
-  width: 180px;
+  width: 191px;
 }
 
 .fancy-file input[type="text"] {
