@@ -52,31 +52,35 @@ body {
   width: 21.8em !important;
 }
 
-.form-horizontal .control-group {
-  margin-bottom: 12px;
-
-  .help-block {
-    padding-top: 0.52em;
+#spot_form {
+  .spot_title {
+    font-size: 14px;
   }
-}
 
-.form-horizontal .control-label {
-  width: 50px;
-  font-size: 0.93em;
-}
+  .form-horizontal {
+    .control-group {
+      margin-bottom: 12px;
 
-.form-horizontal .controls {
-  margin-left: 58px;
-}
+      .help-block {
+        padding-top: 0.52em;
+      }
+    }
 
-input, textarea, .uneditable-input {
-  width: 191px;
-}
+    .control-label {
+      width: 50px;
+      font-size: 0.93em;
+    }
 
-.fancy-file input[type="text"] {
-  width: 165px;
-}
+    .controls {
+      margin-left: 58px;
+    }
 
-.spot_title {
-  font-size: 14px;
+    input, textarea, .uneditable-input {
+      width: 191px;
+    }
+
+    .fancy-file input[type="text"] {
+      width: 165px;
+    }
+  }
 }
