@@ -17,6 +17,10 @@ function( Backbone, Communicator, MapTools_tmpl ){
 			this.el.innerHTML = MapTools_tmpl();
 		},
 
+		toggle: function() {
+			this.$el.toggle();
+		},
+
 		onLocatorClick: function() {
 			Communicator.mediator.trigger("LOCATOR:CLICK");
 		},

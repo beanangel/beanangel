@@ -43,6 +43,13 @@ function( $, Backbone, Spots, MapView, ToolView, Communicator, Map_tmpl ) {
 
 			// publish
 			Communicator.mediator.trigger("MAP:START");
+
+			this.registerEvents();
+		},
+
+		registerEvents: function() {
+			Communicator.mediator.on("FORM:OPEN", this.toolView.toggle, this.toolView);
+			Communicator.mediator.on("FORM:CLOSE", this.toolView.toggle, this.toolView);
 		}
 	});
 });

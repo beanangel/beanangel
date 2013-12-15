@@ -71,18 +71,24 @@ function( Backbone, Communicator, _, L, LeafletProviders, Form_tmpl ){
 			}
 		},
 
-		onPopupOpen: function() {
+		onFormOpen: function() {
 			$('input[type=file]').fancyfile({
 				placeholder: "Durchsuchen ...",
 				text: '',
 				icon: false
 			});
+			Communicator.mediator.trigger("FORM:OPEN");
+		},
+
+		onFormClose: function() {
+			Communicator.mediator.trigger("FORM:CLOSE");
 		},
 
 		registerEvents: function() {
 			this.map.on('locationfound', this.onLocationFound, this);
 			this.map.on('locationerror', this.onLocationError, this);
-			this.map.on('popupopen', this.onPopupOpen, this);
+			this.map.on('popupopen', this.onFormOpen, this);
+			this.map.on('popupclose', this.onFormClose, this);
 			Communicator.mediator.on("LOCATOR:CLICK", this.locate, this);
 			Communicator.mediator.on("MARK_POSITION:CLICK", this.mark, this);
 		},
