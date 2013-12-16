@@ -53,6 +53,7 @@ require.config({
         leaflet_providers: "../bower_components/leaflet-providers/leaflet-providers",
 
         /* form related*/
+        "jquery.iframe-transport": "../bower_components/jquery.iframe-transport/jquery.iframe-transport",
         "bootstrap-file-input": "../bower_components/bootstrap-file-input/bootstrap.file-input",
 		"backbone.syphon": "../bower_components/backbone.syphon/lib/amd/backbone.syphon.min"
     },

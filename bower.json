@@ -19,7 +19,8 @@
     "leaflet": "git@github.com:vperron/leaflet-dist.git#~0.7.0",
     "leaflet-providers": "~1.0.1",
     "bootstrap-file-input": "grevory/bootstrap-file-input",
-    "backbone.syphon": "derickbailey/backbone.syphon#~0.4.1"
+    "backbone.syphon": "derickbailey/backbone.syphon#~0.4.1",
+    "jquery.iframe-transportjquery.iframe-transport": "*"
   },
   "devDependencies": {},
   "directory": "bower_components"
