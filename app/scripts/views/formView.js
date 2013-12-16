@@ -6,6 +6,7 @@ define([
 	'leaflet',
 	'hbs!tmpl/form',
 	'backbone.syphon',
+	'jquery.iframe-transport',
 	'bootstrap-file-input'
 ],
 function( Backbone, Spot, Communicator, _, L, Form_tmpl ){
@@ -30,9 +31,18 @@ function( Backbone, Spot, Communicator, _, L, Form_tmpl ){
 		onSubmit: function(event) {
 			event.preventDefault();
 			var data = Backbone.Syphon.serialize(this);
-			console.log(data);
 			this.model.set(data);
-			this.model.save();
+
+			// now serialize the data and set the flags the way
+			// jquery.iframe-transport expects it.
+			// Otherwise AJAX file upload wouldn't work.
+			data = this.ui.form.find(':text').serializeArray();
+			this.model.save([], {
+				data: data,
+				files: this.ui.form.find(':file'),
+				iframe: true,
+				processData: false
+			});
 		},
 
 		openPopup: function() {
