@@ -5,6 +5,7 @@ define([
 	'underscore',
 	'leaflet',
 	'hbs!tmpl/form',
+	'backbone.syphon',
 	'bootstrap-file-input'
 ],
 function( Backbone, Spot, Communicator, _, L, Form_tmpl ){
@@ -28,7 +29,10 @@ function( Backbone, Spot, Communicator, _, L, Form_tmpl ){
 
 		onSubmit: function(event) {
 			event.preventDefault();
-			console.log(this.ui.form.serialize());
+			var data = Backbone.Syphon.serialize(this);
+			console.log(data);
+			this.model.set(data);
+			this.model.save();
 		},
 
 		openPopup: function() {

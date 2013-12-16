@@ -53,7 +53,8 @@ require.config({
         leaflet_providers: "../bower_components/leaflet-providers/leaflet-providers",
 
         /* form related*/
-        "bootstrap-file-input": "../bower_components/bootstrap-file-input/bootstrap.file-input"
+        "bootstrap-file-input": "../bower_components/bootstrap-file-input/bootstrap.file-input",
+		"backbone.syphon": "../bower_components/backbone.syphon/lib/amd/backbone.syphon.min"
     },
 
     hbs: {
