@@ -20,7 +20,7 @@
     "leaflet-providers": "~1.0.1",
     "bootstrap-file-input": "grevory/bootstrap-file-input",
     "backbone.syphon": "derickbailey/backbone.syphon#~0.4.1",
-    "jquery.iframe-transportjquery.iframe-transport": "*"
+    "jquery.iframe-transport": "*"
   },
   "devDependencies": {},
   "directory": "bower_components"
