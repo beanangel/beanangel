@@ -37,11 +37,22 @@ function( Backbone, Spot, Communicator, _, L, Form_tmpl ){
 			// jquery.iframe-transport expects it.
 			// Otherwise AJAX file upload wouldn't work.
 			data = this.ui.form.find(':text').serializeArray();
+
+			data['X-HTTP-Accept'] = 'application/json';
+
 			this.model.save([], {
 				data: data,
 				files: this.ui.form.find(':file'),
 				iframe: true,
-				processData: false
+				processData: false,
+				accepts: {
+					json: data['X-HTTP-Accept']
+				},
+				dataType: 'json',
+				headers: {
+					"HTTP_ORIGIN": location.host,
+					"X-HTTP-Accept": data['X-HTTP-Accept']
+				}
 			});
 		},
 
