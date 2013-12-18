@@ -26,6 +26,13 @@
 					expect( Spot.fromLatLng({lat: 1, lng: 1}).attributes ).to.contain.keys(geoJSONKeys);
 				});
 
+				it('should return booleans on isNew()', function () {
+					var spot = new Spot();
+					expect( spot.isNew ).to.be.true;
+					spot.setCoords(1, 1);
+					expect( spot.isNew ).to.be.false;
+				});
+
 				it('should not throw when getName() is called without properties', function () {
 					var spot = new Spot();
 					expect( spot.getName ).to.not.throw();

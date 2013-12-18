@@ -1,8 +1,9 @@
 define([
 	'backbone',
-	'communicator'
+	'communicator',
+	'underscore'
 ],
-function( Backbone, Communicator ) {
+function( Backbone, Communicator, _ ) {
     'use strict';
 
 	/* Return a model class definition */
@@ -14,6 +15,25 @@ function( Backbone, Communicator ) {
 			type: "Feature",
 			geometry: null,
 			properties: null
+		},
+
+		isNew: function() {
+			var geo = this.get('geometry');
+			return geo && geo.coordinates && geo.coordinates.length == 2;
+		},
+
+		// @param coords in longitude latitude order as per GeoJSON spec
+		setCoords: function(coords) {
+			if(arguments.length == 2) {
+				coords = [coords[0], coords[1]];
+			}
+
+			var geo = this.get('geometry');
+			if(_.isEmpty(geo)) {
+				geo = {type: "Point", coordinates: null};
+			}
+			geo.coordinates = coords;
+			this.set(geo);
 		},
 
 		getName: function() {
