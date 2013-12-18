@@ -69,7 +69,7 @@ module.exports = function (grunt) {
             }
         },
 
-        // mocha command
+        // exec:mocha command
         exec: {
             mocha: {
                 command: 'mocha-phantomjs http://localhost:<%= connect.testserver.options.port %>/test',
@@ -77,6 +77,16 @@ module.exports = function (grunt) {
             }
         },
 
+		// mocha command
+		mocha: {
+            // Test all files ending in .html anywhere inside the test directory.
+            src: ['test/**/*.js'],
+            options: {
+                templateOptions: {
+                    requireConfigFile: 'SpecRunner.js'
+				}
+            }
+		},
         
         // express app
         express: {
@@ -308,8 +318,7 @@ module.exports = function (grunt) {
         'createDefaultTemplate',
         'handlebars',
         'compass',
-        'connect:testserver',
-        'exec:mocha'
+        'mocha'
     ]);
 
     grunt.registerTask('build', [
