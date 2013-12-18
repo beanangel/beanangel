@@ -7,6 +7,8 @@
 		'models/spot'
 		],
 		function( Spot ) {
+			// @see http://geojson.org/geojson-spec.html#feature-objects
+			var geoJSONKeys = ['type', 'geometry', 'properties'];
 
 			describe('Spot Model', function () {
 
@@ -15,10 +17,13 @@
 					expect( spot ).to.be.an.instanceof( Spot );
 				});
 
-				// @see http://geojson.org/geojson-spec.html#feature-objects
 				it('should have the defaults at least be GeoJSON Feature spec compliant', function () {
 					var spot = new Spot();
-					expect( spot.attributes ).to.contain.keys('geometry', 'properties');
+					expect( spot.attributes ).to.contain.keys(geoJSONKeys);
+				});
+
+				it('should return GeoJSON compliant attributes from the static function fromLatLng()', function () {
+					expect( Spot.fromLatLng({lat: 1, lng: 1}).attributes ).to.contain.keys(geoJSONKeys);
 				});
 
 				it('should not throw when getName() is called without properties', function () {

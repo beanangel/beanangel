@@ -11,6 +11,7 @@ function( Backbone, Communicator ) {
 
 		defaults: {
 			// as per http://geojson.org/geojson-spec.html#feature-objects
+			type: "Feature",
 			geometry: null,
 			properties: null
 		},
@@ -20,6 +21,19 @@ function( Backbone, Communicator ) {
 				return null;
 			}
 			return this.get('properties').name;
+		}
+	},
+	// class properties
+	{
+		fromLatLng: function (latLng) {
+			// GeoJSON has lngLat, so reverse order
+			var coords = [latLng.lng, latLng.lat];
+			return new this({
+				geometry: {
+					type: "Point",
+					coordinates: coords
+				}
+			});
 		}
 	});
 });
