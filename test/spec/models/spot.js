@@ -15,8 +15,15 @@
 					expect( spot ).to.be.an.instanceof( Spot );
 				});
 
-				it('should have more test written', function(){
-					expect( false ).to.be.ok;
+				// @see http://geojson.org/geojson-spec.html#feature-objects
+				it('should have the defaults at least be GeoJSON Feature spec compliant', function () {
+					var spot = new Spot();
+					expect( spot.attributes ).to.contain.keys('geometry', 'properties');
+				});
+
+				it('should not throw when getName() is called without properties', function () {
+					var spot = new Spot();
+					expect( spot.getName ).to.not.throw();
 				});
 			});
 
