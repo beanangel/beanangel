@@ -1,6 +1,5 @@
 define([
 	'backbone',
-	'models/spot',
 	'communicator',
 	'underscore',
 	'leaflet',
@@ -9,7 +8,7 @@ define([
 	'jquery.iframe-transport',
 	'bootstrap-file-input'
 ],
-function( Backbone, Spot, Communicator, _, L, Form_tmpl ){
+function( Backbone, Communicator, _, L, Form_tmpl ){
     'use strict';
 
 	return Backbone.Marionette.ItemView.extend({
@@ -24,7 +23,7 @@ function( Backbone, Spot, Communicator, _, L, Form_tmpl ){
 		},
 
 		initialize: function(options) {
-			this.model = new Spot(options.feature);
+			this.model = options.model;
 			this.layerSpot = options.layerSpot;
 		},
 

@@ -4,9 +4,10 @@ define([
 	'underscore',
 	'leaflet',
 	'leaflet_providers',
+	'models/spot',
 	'views/formView'
 ],
-function( Backbone, Communicator, _, L, LeafletProviders, FormView ){
+function( Backbone, Communicator, _, L, LeafletProviders, Spot, FormView ){
     'use strict';
 
 	return Backbone.View.extend({
@@ -30,7 +31,8 @@ function( Backbone, Communicator, _, L, LeafletProviders, FormView ){
 
 		setMarkerAtCurPos: function(e) {
 			var curPos = this.map.getCenter();
-			new L.Marker(curPos).addTo(this.map);
+			var spot = Spot.fromLatLng(curPos);
+			this.addSpots(spot);
 		},
 
 		onLocationFound: function(e) {
@@ -65,11 +67,11 @@ function( Backbone, Communicator, _, L, LeafletProviders, FormView ){
 		},
 
 		onEachFeatureSetupPopup: function(feature, layer) {
-			var mapView = this;
-			if (feature.properties) {
+			if (feature && layer) {
 				layer.on('click', function() {
+					var spot = new Spot(feature);
 					var formView = new FormView({
-						feature: feature,
+						model: spot,
 						layerSpot: layer
 					});
 					formView.openPopup();
