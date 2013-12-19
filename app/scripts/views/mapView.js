@@ -4,15 +4,20 @@ define([
 	'underscore',
 	'leaflet',
 	'leaflet_providers',
+	'collections/spots',
 	'models/spot',
 	'views/formView'
 ],
-function( Backbone, Communicator, _, L, LeafletProviders, Spot, FormView ){
+function( Backbone, Communicator, _, L, LeafletProviders, Spots, Spot, FormView ){
     'use strict';
 
 	return Backbone.View.extend({
 
 		id: 'map',
+
+		initialize: function() {
+			this.collection = new Spots();
+		},
 
 		onShow: function() {
 			this.setupMap();
@@ -49,6 +54,8 @@ function( Backbone, Communicator, _, L, LeafletProviders, Spot, FormView ){
 		},
 
 		addSpots: function(spots) {
+			var toAdd = (spots instanceof Backbone.Collection) ? spots.models : spots;
+			this.collection.add(toAdd);
 			this.geoJSON.addData(spots.toJSON());
 		},
 
@@ -68,8 +75,9 @@ function( Backbone, Communicator, _, L, LeafletProviders, Spot, FormView ){
 
 		onEachFeatureSetupPopup: function(feature, layer) {
 			if (feature && layer) {
+				var mapView = this;
 				layer.on('click', function() {
-					var spot = new Spot(feature);
+					var spot = mapView.collection.get(feature.id);
 					var formView = new FormView({
 						model: spot,
 						layerSpot: layer

@@ -18,8 +18,7 @@ function( Backbone, Communicator, _ ) {
 		},
 
 		isNew: function() {
-			var geo = this.get('geometry');
-			return geo && geo.coordinates && geo.coordinates.length == 2;
+			return _.isEmpty(this.get('id'));
 		},
 
 		// @param coords in longitude latitude order as per GeoJSON spec

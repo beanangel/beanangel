@@ -37,7 +37,17 @@ function( Backbone, Communicator, _, L, Form_tmpl ){
 			// Otherwise AJAX file upload wouldn't work.
 			data = this.ui.form.find('input:not(:file)').serializeArray();
 
-			data['X-HTTP-Accept'] = 'application/json';
+			// headers to set on the ajax transport
+			var headers = {};
+
+			// If this is not a new spot, we want to update it.
+			// We tell the backend to use the HTTP verb PUT by mimicking the
+			// HTTP method with "_method" and an "X-HTTP-Method-Override" header.
+			if(!this.model.isNew()) {
+				var method = "PUT";
+				data.push({name: "_method", value: method});
+				headers['X-HTTP-Method-Override'] = method;
+			}
 
 			this.model.save([], {
 				data: data,
@@ -45,13 +55,10 @@ function( Backbone, Communicator, _, L, Form_tmpl ){
 				iframe: true,
 				processData: false,
 				accepts: {
-					json: data['X-HTTP-Accept']
+					json: 'application/json'
 				},
 				dataType: 'json',
-				headers: {
-					"HTTP_ORIGIN": location.host,
-					"X-HTTP-Accept": data['X-HTTP-Accept']
-				}
+				headers: headers
 			});
 		},
 
