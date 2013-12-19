@@ -73,16 +73,26 @@ function( Backbone, Communicator, _, L, LeafletProviders, Spots, Spot, FormView 
 			}).addTo(this.map);
 		},
 
+		openPopup: function(layeredSpot) {
+			var feature = layeredSpot.feature;
+			var spot = null;
+			if(feature.id) {
+				spot = this.collection.get(feature.id);
+			} else {
+				spot = this.collection.findWhere({geometry: feature.geometry});
+			}
+			var formView = new FormView({
+				model: spot,
+				layerSpot: layeredSpot
+			});
+			formView.openPopup();
+		},
+
 		onEachFeatureSetupPopup: function(feature, layer) {
 			if (feature && layer) {
 				var mapView = this;
 				layer.on('click', function() {
-					var spot = mapView.collection.get(feature.id);
-					var formView = new FormView({
-						model: spot,
-						layerSpot: layer
-					});
-					formView.openPopup();
+					mapView.openPopup(layer);
 				});
 			}
 		},
