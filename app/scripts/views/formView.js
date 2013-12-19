@@ -35,7 +35,7 @@ function( Backbone, Communicator, _, L, Form_tmpl ){
 			// now serialize the data and set the flags the way
 			// jquery.iframe-transport expects it.
 			// Otherwise AJAX file upload wouldn't work.
-			data = this.ui.form.find(':text').serializeArray();
+			data = this.ui.form.find('input:not(:file)').serializeArray();
 
 			data['X-HTTP-Accept'] = 'application/json';
 
@@ -73,6 +73,12 @@ function( Backbone, Communicator, _, L, Form_tmpl ){
 
 		onClose: function() {
 			Communicator.mediator.trigger("FORM:CLOSE", this.model.getName());
+		},
+
+		serializeData: function() {
+			var data = this.model.toJSON();
+			var additionalData = {isNew: this.model.isNew()};
+			return _.extend(data, additionalData);
 		}
 	});
 });

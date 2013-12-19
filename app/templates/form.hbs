@@ -3,11 +3,14 @@
 
 	<form action="#" class="form-horizontal" method="post"
 		  enctype="multipart/form-data">
+		{{#if isNew}}
+		<input type="hidden" name="spot[location]" value="{{geometry.coordinates}}">
+		{{/if}}
 		<div class="control-group">
-			<label for="location" class="control-label">Ort</label>
+			<label for="location_query" class="control-label">Ort</label>
 			<div class="controls">
 				<span class="help-block">Falls der gefundene Punkt nicht so ganz am Ort des Geschehens ist.</span>
-				<input id="location" type="text" placeholder="Bspw. Frankfurt Hauptbahnhof" name="spot[location]" class="form-control">
+				<input id="location_query" type="text" placeholder="Bspw. Frankfurt Hauptbahnhof" name="spot[location_query]" class="form-control">
 			</div>
 		</div>
 		<div class="control-group">
