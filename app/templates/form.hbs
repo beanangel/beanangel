@@ -20,10 +20,10 @@
 			</div>
 		</div>
 		<div class="control-group">
-			<label for="photo" class="control-label">Lade ein Foto hoch <abbr role="presentation" title="erforderlich">*</abbr></label>
+			<label for="photo" class="control-label">{{#if properties.photo}}Derzeitiges Foto{{else}}Lade ein Foto hoch <abbr role="presentation" title="erforderlich">*</abbr>{{/if}}</label>
 			<div class="controls">
 				{{#if properties.photo}}
-				<img src="{{properties.photo.thumb.url}}" height="100">
+				<img src="{{properties.photo.thumb.url}}" height="76">
 				{{else}}
 				<input id="photo" type="file" required aria-required="true" title="Durchsuchen ..." name="spot[photo]" class="form-control">
 				<span class="help-block">Dieses Foto wird direkt auf der Karte zu sehen sein.</span>
