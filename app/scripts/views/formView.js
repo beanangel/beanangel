@@ -35,7 +35,7 @@ function( Backbone, Communicator, _, L, Form_tmpl ){
 			// now serialize the data and set the flags the way
 			// jquery.iframe-transport expects it.
 			// Otherwise AJAX file upload wouldn't work.
-			data = this.ui.form.find('input:not(:file)').serializeArray();
+			data = this.ui.form.find('input:not(:file),textarea').serializeArray();
 
 			// headers to set on the ajax transport
 			var headers = {};
