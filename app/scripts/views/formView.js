@@ -5,8 +5,7 @@ define([
 	'leaflet',
 	'hbs!tmpl/form',
 	'backbone.syphon',
-	'jquery.iframe-transport',
-	'bootstrap-file-input'
+	'jquery.iframe-transport'
 ],
 function( Backbone, Communicator, _, L, Form_tmpl ){
     'use strict';
@@ -71,9 +70,6 @@ function( Backbone, Communicator, _, L, Form_tmpl ){
 			} else {
 				this.layerSpot.setPopupContent(this.render().el);
 			}
-
-			// enhancing the file input styling has to be done on every render
-			this.ui.form.find('input[type=file]').bootstrapFileInput();
 
 			Communicator.mediator.trigger("FORM:OPEN", this.model.getName());
 		},
