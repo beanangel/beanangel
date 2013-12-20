@@ -4,19 +4,18 @@ define([
 	'underscore',
 	'leaflet',
 	'hbs!tmpl/form',
-	'hbs!tmpl/upload-manager.main',
-	'hbs!tmpl/upload-manager.file',
 	'backbone_upload_manager',
 	'backbone.syphon'
 ],
-function( Backbone, Communicator, _, L, Form_tmpl, UploadMgr_Main_tmpl, UploadMgr_File_tmpl ){
+function( Backbone, Communicator, _, L, Form_tmpl ){
     'use strict';
 
 	return Backbone.Marionette.ItemView.extend({
 		template: Form_tmpl,
 
 		ui: {
-			form: "form"
+			form: "form",
+			uploadArea: "div#upload-manager"
 		},
 
 		events: {
@@ -31,8 +30,8 @@ function( Backbone, Communicator, _, L, Form_tmpl, UploadMgr_Main_tmpl, UploadMg
 			this.uploadManager = new Backbone.UploadManager({
 				uploadUrl: this.model.url(),
 				templates: {
-					main: UploadMgr_Main_tmpl,
-					file: UploadMgr_File_tmpl
+					main: 'upload-manager.main.tmpl',
+					file: 'upload-manager.file.tmpl'
 				}
 			});
 		},
@@ -81,6 +80,12 @@ function( Backbone, Communicator, _, L, Form_tmpl, UploadMgr_Main_tmpl, UploadMg
 			} else {
 				this.layerSpot.setPopupContent(this.render().el);
 			}
+
+			// Render the upload manager. renderTo is a helper of Backbone.DeferedView
+			// which Backbone.UploadManager (the plugin that we use for uploads) depends on
+			// for its asynchronous loading of templates. We might bend that plugin to
+			// remove that async loading as we'll always need our templates (photos are required).
+			this.uploadManager.renderTo(this.ui.uploadArea);
 
 			Communicator.mediator.trigger("FORM:OPEN", this.model.getName());
 		},
