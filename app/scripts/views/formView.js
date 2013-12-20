@@ -4,10 +4,12 @@ define([
 	'underscore',
 	'leaflet',
 	'hbs!tmpl/form',
-	'backbone.syphon',
-	'jquery.iframe-transport'
+	'hbs!tmpl/upload-manager.main',
+	'hbs!tmpl/upload-manager.file',
+	'backbone_upload_manager',
+	'backbone.syphon'
 ],
-function( Backbone, Communicator, _, L, Form_tmpl ){
+function( Backbone, Communicator, _, L, Form_tmpl, UploadMgr_Main_tmpl, UploadMgr_File_tmpl ){
     'use strict';
 
 	return Backbone.Marionette.ItemView.extend({
@@ -24,6 +26,15 @@ function( Backbone, Communicator, _, L, Form_tmpl ){
 		initialize: function(options) {
 			this.model = options.model;
 			this.layerSpot = options.layerSpot;
+
+			// Create the upload manager
+			this.uploadManager = new Backbone.UploadManager({
+				uploadUrl: this.model.url(),
+				templates: {
+					main: UploadMgr_Main_tmpl,
+					file: UploadMgr_File_tmpl
+				}
+			});
 		},
 
 		onSubmit: function(event) {
