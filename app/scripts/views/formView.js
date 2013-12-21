@@ -38,19 +38,23 @@ function( Backbone, Communicator, _, L, Form_tmpl ){
 		onSubmit: function(event) {
 			event.preventDefault();
 
-			// update the model
+			// Update the model attributes.
 			var data = Backbone.Syphon.serialize(this);
 			this.model.set(data);
 
-			// if files were added, submit the form through Backbone Upload Manager
-			// along with its other fields
+			// If files were added, submit the form through Backbone Upload Manager
+			// along with its other fields.
 			if(this.uploadManager.files.length) {
 				this.uploadManager.files.each(function(file) {
 					file.start();
 				});
-			} else {
-				// submit the data via Backbone.sync
+			} else if(!_.isEmpty(this.model.getThumb())) {
+				// This is an update request where files already exist
+				// so submit the data via Backbone.sync.
 				this.model.save();
+			} else {
+				// no files are present anywhere
+				this.ui.uploadArea.find('#uploader-feedback').html('Bitte ein Foto hinzufügen');
 			}
 		},
 
