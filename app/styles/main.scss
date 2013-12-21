@@ -88,8 +88,9 @@ body {
       background-position: -408px -95px;
     }
 
-    .upload-manager div.progess {
+    .upload-manager div.progress {
       margin-bottom: 5px;
+      min-height: 1px;
     }
   }
 }
