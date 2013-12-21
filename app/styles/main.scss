@@ -83,6 +83,11 @@ body {
       width: 191px;
     }
 
+    .upload-manager .fileinput-button i {
+      background: url("../bower_components/sass-bootstrap/img/glyphicons-halflings.png");
+      background-position: -408px -95px;
+    }
+
     .upload-manager div.progess {
       margin-bottom: 5px;
     }
