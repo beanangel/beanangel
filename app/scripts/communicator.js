@@ -21,8 +21,10 @@ function( Backbone ) {
 			// TODO re-evaluate whether this is a good place, maybe we'll have a config on the application or something
 			// like that. But there where articles recommending against a centralized app instance that get's required
 			// too often.
-			this.backendURL = "http://" + location.hostname + ":3000";
-
+			this.backendURL = "http://" + location.hostname;
+			if(location.hostname === "localhost") {
+				this.backendURL += ":3000";
+			}
 
 			this.mediator.on('all', this.logMediatorEvents, this);
 		},
