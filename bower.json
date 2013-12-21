@@ -20,7 +20,6 @@
     "leaflet-providers": "~1.0.1",
     "backbone.syphon": "derickbailey/backbone.syphon#~0.4.1",
     "jquery-file-upload": "~9.5.2",
-    "jquery.iframe-transport": "*",
     "backbone-defered-view-loader": "sroze/backbone-defered-view-loader",
     "backbone-upload-manager": "sroze/backbone-upload-manager"
   },
