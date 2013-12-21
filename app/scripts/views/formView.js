@@ -28,6 +28,7 @@ function( Backbone, Communicator, _, L, Form_tmpl ){
 
 			// Create the upload manager
 			this.uploadManager = new Backbone.UploadManager({
+				uploadUrl: null,
 				templates: {
 					main: 'upload-manager.main.tmpl',
 					file: 'upload-manager.file.tmpl'
