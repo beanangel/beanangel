@@ -28,7 +28,6 @@ function( Backbone, Communicator, _, L, Form_tmpl ){
 
 			// Create the upload manager
 			this.uploadManager = new Backbone.UploadManager({
-				uploadUrl: this.model.url(),
 				templates: {
 					main: 'upload-manager.main.tmpl',
 					file: 'upload-manager.file.tmpl'
@@ -38,37 +37,21 @@ function( Backbone, Communicator, _, L, Form_tmpl ){
 
 		onSubmit: function(event) {
 			event.preventDefault();
+
+			// update the model
 			var data = Backbone.Syphon.serialize(this);
-			this.model.set(data);
+			this.model.set(data.spot);
 
-			// now serialize the data and set the flags the way
-			// jquery.iframe-transport expects it.
-			// Otherwise AJAX file upload wouldn't work.
-			data = this.ui.form.find('input:not(:file),textarea').serializeArray();
-
-			// headers to set on the ajax transport
-			var headers = {};
-
-			// If this is not a new spot, we want to update it.
-			// We tell the backend to use the HTTP verb PUT by mimicking the
-			// HTTP method with "_method" and an "X-HTTP-Method-Override" header.
-			if(!this.model.isNew()) {
-				var method = "PUT";
-				data.push({name: "_method", value: method});
-				headers['X-HTTP-Method-Override'] = method;
+			// if files were added, submit the form through Backbone Upload Manager
+			// along with its other fields
+			if(this.uploadManager.files.length) {
+				this.uploadManager.files.each(function(file) {
+					file.start();
+				});
+			} else {
+				// submit the data via Backbone.sync
+				this.model.save(data);
 			}
-
-			this.model.save([], {
-				data: data,
-				files: this.ui.form.find(':file'),
-				iframe: true,
-				processData: false,
-				accepts: {
-					json: 'application/json'
-				},
-				dataType: 'json',
-				headers: headers
-			});
 		},
 
 		openPopup: function() {
@@ -96,7 +79,11 @@ function( Backbone, Communicator, _, L, Form_tmpl ){
 
 		serializeData: function() {
 			var data = this.model.toJSON();
-			var additionalData = {isNew: this.model.isNew()};
+			var additionalData = {
+				url: this.model.url(),
+				isNew: this.model.isNew(),
+				isPhotoPresent: !_.isEmpty(this.model.getThumb())
+			};
 			return _.extend(data, additionalData);
 		}
 	});

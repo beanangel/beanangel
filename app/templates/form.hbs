@@ -1,7 +1,7 @@
 <article id="spot_form">
 	<h2 class="spot_title">{{properties.title}}</h2>
 
-	<form action="#" class="form-horizontal" method="post"
+	<form action="{{url}}" class="form-horizontal" method="post"
 		  enctype="multipart/form-data">
 		{{#if isNew}}
 		<input type="hidden" name="spot[location]" value="{{geometry.coordinates}}">
@@ -20,9 +20,9 @@
 			</div>
 		</div>
 		<div class="control-group">
-			<label for="photo" class="control-label">{{#if properties.photo}}Derzeitiges Foto{{else}}Lade ein Foto hoch <abbr role="presentation" title="erforderlich">*</abbr>{{/if}}</label>
+			<label for="fileupload" class="control-label">{{#if isPhotoPresent}}Derzeitiges Foto{{else}}Lade ein Foto hoch <abbr role="presentation" title="erforderlich">*</abbr>{{/if}}</label>
 			<div class="controls">
-				{{#if properties.photo}}
+				{{#if isPhotoPresent}}
 				<img src="{{properties.photo.thumb.url}}" height="76">
 				{{else}}
 				<div id="upload-manager"></div>
