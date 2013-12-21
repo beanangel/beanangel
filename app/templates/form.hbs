@@ -4,19 +4,19 @@
 	<form action="{{url}}" class="form-horizontal" method="post"
 		  enctype="multipart/form-data">
 		{{#if isNew}}
-		<input type="hidden" name="spot[location]" value="{{geometry.coordinates}}">
+		<input type="hidden" name="geometry[coordinates]" value="{{geometry.coordinates}}">
 		{{/if}}
 		<div class="control-group">
 			<label for="location_query" class="control-label">Ort</label>
 			<div class="controls">
 				<span class="help-block">Falls der gefundene Punkt nicht so ganz am Ort des Geschehens ist.</span>
-				<input id="location_query" type="text" placeholder="Bspw. Frankfurt Hauptbahnhof" name="spot[location_query]" class="form-control">
+				<input id="location_query" type="text" placeholder="Bspw. Frankfurt Hauptbahnhof" name="properties[location_query]" class="form-control">
 			</div>
 		</div>
 		<div class="control-group">
 			<label for="title" class="control-label">Titel <abbr role="presentation" title="erforderlich">*</abbr></label>
 			<div class="controls">
-				<input id="title" type="text" value="{{properties.title}}" required aria-required="true" placeholder="Geb dem Guten einen Namen" name="spot[title]" class="form-control">
+				<input id="title" type="text" value="{{properties.title}}" required aria-required="true" placeholder="Geb dem Guten einen Namen" name="properties[title]" class="form-control">
 			</div>
 		</div>
 		<div class="control-group">
@@ -33,13 +33,13 @@
 		<div class="control-group">
 			<label for="description" class="control-label">Text</label>
 			<div class="controls">
-				<textarea id="description" placeholder="Beschreibung" rows="3" name="spot[description]" class="form-control">{{properties.description}}</textarea>
+				<textarea id="description" placeholder="Beschreibung" rows="3" name="properties[description]" class="form-control">{{properties.description}}</textarea>
 			</div>
 		</div>
 		<div class="control-group">
 			<label for="username" class="control-label">Name <abbr role="presentation" title="erforderlich">*</abbr></label>
 			<div class="controls">
-				<input id="username" type="text" value="{{properties.username}}}" required aria-required="true" placeholder="Ihr/Dein Name" name="spot[username]" class="form-control">
+				<input id="username" type="text" value="{{properties.username}}}" required aria-required="true" placeholder="Ihr/Dein Name" name="properties[username]" class="form-control">
 				<span class="help-block">Wird beim Spot gezeigt werden.</span>
 			</div>
 		</div>

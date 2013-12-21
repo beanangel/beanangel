@@ -40,7 +40,7 @@ function( Backbone, Communicator, _, L, Form_tmpl ){
 
 			// update the model
 			var data = Backbone.Syphon.serialize(this);
-			this.model.set(data.spot);
+			this.model.set(data);
 
 			// if files were added, submit the form through Backbone Upload Manager
 			// along with its other fields
@@ -50,7 +50,7 @@ function( Backbone, Communicator, _, L, Form_tmpl ){
 				});
 			} else {
 				// submit the data via Backbone.sync
-				this.model.save(data);
+				this.model.save();
 			}
 		},
 
