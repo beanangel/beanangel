@@ -22,13 +22,13 @@ require.config({
         },
         leaflet_providers: ['leaflet'],
 
-		// backbone upload manager and its dependencies
-		"jquery.ui.widget": ["jquery"],
-		"jquery.file_upload": ["jquery", "jquery.ui.widget", 'jquery.iframe-transport'],
-		"backbone_upload_manager": [
-			'jquery.file_upload',
-			'backbone_defered_view_loader'
-		]
+        // backbone upload manager and its dependencies
+        "jquery.ui.widget": ["jquery"],
+        "jquery.file_upload": ["jquery", "jquery.ui.widget", 'jquery.iframe-transport'],
+        "backbone_upload_manager": [
+            'jquery.file_upload',
+            'backbone_defered_view_loader'
+        ]
     },
 
     paths: {
@@ -61,12 +61,12 @@ require.config({
         leaflet_providers: "../bower_components/leaflet-providers/leaflet-providers",
 
         /* form related*/
-		"jquery.ui.widget": "../bower_components/jquery-file-upload/js/vendor/jquery.ui.widget",
-		"jquery.iframe-transport": "../bower_components/jquery-file-upload/js/jquery.iframe-transport",
-		"jquery.file_upload": "../bower_components/jquery-file-upload/js/jquery.fileupload",
+        "jquery.ui.widget": "../bower_components/jquery-file-upload/js/vendor/jquery.ui.widget",
+        "jquery.iframe-transport": "../bower_components/jquery-file-upload/js/jquery.iframe-transport",
+        "jquery.file_upload": "../bower_components/jquery-file-upload/js/jquery.fileupload",
         "backbone_defered_view_loader": "../bower_components/backbone-defered-view-loader/js/backbone-defered-view-loader",
         "backbone_upload_manager": "../bower_components/backbone-upload-manager/js/backbone.upload-manager",
-		"backbone.syphon": "../bower_components/backbone.syphon/lib/amd/backbone.syphon.min"
+        "backbone.syphon": "../bower_components/backbone.syphon/lib/amd/backbone.syphon.min"
     },
 
     hbs: {
