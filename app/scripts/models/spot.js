@@ -35,6 +35,14 @@ function( Backbone, Communicator, _ ) {
 			this.set(geo);
 		},
 
+		getThumbs: function() {
+			var properties = this.get('properties');
+			if(!properties || properties.attachments.length === 0) {
+				return null;
+			}
+			return _.pluck(properties.attachments, 'thumb');
+		},
+
 		getName: function() {
 			if(!this.get('properties')) {
 				return null;

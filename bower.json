@@ -18,9 +18,10 @@
     "sinon": "~1.7.3",
     "leaflet": "git@github.com:vperron/leaflet-dist.git#~0.7.0",
     "leaflet-providers": "~1.0.1",
-    "bootstrap-file-input": "grevory/bootstrap-file-input",
     "backbone.syphon": "derickbailey/backbone.syphon#~0.4.1",
-    "jquery.iframe-transport": "*"
+    "jquery-file-upload": "~9.5.2",
+    "backbone-defered-view-loader": "sroze/backbone-defered-view-loader",
+    "backbone-upload-manager": "sroze/backbone-upload-manager"
   },
   "devDependencies": {},
   "directory": "bower_components"

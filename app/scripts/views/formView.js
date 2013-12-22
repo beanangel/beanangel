@@ -4,9 +4,8 @@ define([
 	'underscore',
 	'leaflet',
 	'hbs!tmpl/form',
-	'backbone.syphon',
-	'jquery.iframe-transport',
-	'bootstrap-file-input'
+	'backbone_upload_manager',
+	'backbone.syphon'
 ],
 function( Backbone, Communicator, _, L, Form_tmpl ){
     'use strict';
@@ -15,7 +14,8 @@ function( Backbone, Communicator, _, L, Form_tmpl ){
 		template: Form_tmpl,
 
 		ui: {
-			form: "form"
+			form: "form",
+			uploadArea: "div#upload-manager"
 		},
 
 		events: {
@@ -25,41 +25,38 @@ function( Backbone, Communicator, _, L, Form_tmpl ){
 		initialize: function(options) {
 			this.model = options.model;
 			this.layerSpot = options.layerSpot;
+
+			// Create the upload manager
+			this.uploadManager = new Backbone.UploadManager({
+				uploadUrl: null,
+				templates: {
+					main: 'upload-manager.main.tmpl',
+					file: 'upload-manager.file.tmpl'
+				}
+			});
 		},
 
 		onSubmit: function(event) {
 			event.preventDefault();
+
+			// Update the model attributes.
 			var data = Backbone.Syphon.serialize(this);
 			this.model.set(data);
 
-			// now serialize the data and set the flags the way
-			// jquery.iframe-transport expects it.
-			// Otherwise AJAX file upload wouldn't work.
-			data = this.ui.form.find('input:not(:file),textarea').serializeArray();
-
-			// headers to set on the ajax transport
-			var headers = {};
-
-			// If this is not a new spot, we want to update it.
-			// We tell the backend to use the HTTP verb PUT by mimicking the
-			// HTTP method with "_method" and an "X-HTTP-Method-Override" header.
-			if(!this.model.isNew()) {
-				var method = "PUT";
-				data.push({name: "_method", value: method});
-				headers['X-HTTP-Method-Override'] = method;
+			// If files were added, submit the form through Backbone Upload Manager
+			// along with its other fields.
+			if(this.uploadManager.files.length) {
+				this.uploadManager.files.each(function(file) {
+					file.start();
+				});
+			} else if(!_.isEmpty(this.model.getThumbs())) {
+				// This is an update request where files already exist
+				// so submit the data via Backbone.sync.
+				this.model.save();
+			} else {
+				// no files are present anywhere
+				this.ui.uploadArea.find('#uploader-feedback').html('Bitte ein Foto hinzufügen');
 			}
-
-			this.model.save([], {
-				data: data,
-				files: this.ui.form.find(':file'),
-				iframe: true,
-				processData: false,
-				accepts: {
-					json: 'application/json'
-				},
-				dataType: 'json',
-				headers: headers
-			});
 		},
 
 		openPopup: function() {
@@ -72,8 +69,11 @@ function( Backbone, Communicator, _, L, Form_tmpl ){
 				this.layerSpot.setPopupContent(this.render().el);
 			}
 
-			// enhancing the file input styling has to be done on every render
-			this.ui.form.find('input[type=file]').bootstrapFileInput();
+			// Render the upload manager. renderTo is a helper of Backbone.DeferedView
+			// which Backbone.UploadManager (the plugin that we use for uploads) depends on
+			// for its asynchronous loading of templates. We might bend that plugin to
+			// remove that async loading as we'll always need our templates (photos are required).
+			this.uploadManager.renderTo(this.ui.uploadArea);
 
 			Communicator.mediator.trigger("FORM:OPEN", this.model.getName());
 		},
@@ -84,7 +84,13 @@ function( Backbone, Communicator, _, L, Form_tmpl ){
 
 		serializeData: function() {
 			var data = this.model.toJSON();
-			var additionalData = {isNew: this.model.isNew()};
+			var thumbs = this.model.getThumbs();
+			var additionalData = {
+				url: this.model.url(),
+				isNew: this.model.isNew(),
+				hasPhotos: !_.isEmpty(thumbs),
+				thumbs: thumbs
+			};
 			return _.extend(data, additionalData);
 		}
 	});
