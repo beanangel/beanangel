@@ -35,12 +35,12 @@ function( Backbone, Communicator, _ ) {
 			this.set(geo);
 		},
 
-		getThumb: function() {
+		getThumbs: function() {
 			var properties = this.get('properties');
-			if(!properties) {
+			if(!properties || properties.attachments.length === 0) {
 				return null;
 			}
-			return properties && properties.photo && properties.photo.thumb && properties.photo.thumb.url;
+			return _.pluck(properties.attachments, 'thumb');
 		},
 
 		getName: function() {

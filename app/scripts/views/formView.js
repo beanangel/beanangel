@@ -49,7 +49,7 @@ function( Backbone, Communicator, _, L, Form_tmpl ){
 				this.uploadManager.files.each(function(file) {
 					file.start();
 				});
-			} else if(!_.isEmpty(this.model.getThumb())) {
+			} else if(!_.isEmpty(this.model.getThumbs())) {
 				// This is an update request where files already exist
 				// so submit the data via Backbone.sync.
 				this.model.save();
@@ -84,10 +84,12 @@ function( Backbone, Communicator, _, L, Form_tmpl ){
 
 		serializeData: function() {
 			var data = this.model.toJSON();
+			var thumbs = this.model.getThumbs();
 			var additionalData = {
 				url: this.model.url(),
 				isNew: this.model.isNew(),
-				isPhotoPresent: !_.isEmpty(this.model.getThumb())
+				hasPhotos: !_.isEmpty(thumbs),
+				thumbs: thumbs
 			};
 			return _.extend(data, additionalData);
 		}

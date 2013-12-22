@@ -20,10 +20,14 @@
 			</div>
 		</div>
 		<div class="control-group">
-			<label for="fileupload" class="control-label">{{#if isPhotoPresent}}Derzeitiges Foto{{else}}Lade ein Foto hoch <abbr role="presentation" title="erforderlich">*</abbr>{{/if}}</label>
+			<label for="fileupload" class="control-label">{{#if hasPhotos}}Derzeitige Fotos{{else}}Lade ein Foto hoch <abbr role="presentation" title="erforderlich">*</abbr>{{/if}}</label>
 			<div class="controls">
-				{{#if isPhotoPresent}}
-				<img src="{{properties.photo.thumb.url}}" height="76">
+				{{#if hasPhotos}}
+				<ul class="inline">
+				{{#each thumbs}}
+					<li><img src="{{this}}" height="76"></li>
+				{{/each}}
+				</ul>
 				{{else}}
 				<div id="upload-manager"></div>
 				<span class="help-block">Dieses Foto wird direkt auf der Karte zu sehen sein.</span>
