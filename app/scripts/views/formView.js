@@ -33,6 +33,13 @@ function( Backbone, Communicator, _, L, Form_tmpl ){
 					main: 'upload-manager.main.tmpl',
 					file: 'upload-manager.file.tmpl'
 				}
+			}).on('filedone', function (file, data) {
+				// Whe filedone is triggered, we didn't update the model by model.save(),
+				// but by submitting a form to the resource in which case the sync
+				// event is not called automatically. So we're explicitly doing this
+				// to update the attachments on the model with the response from
+				// the server. TODO find a less clumsy way
+				options.model.trigger('sync', options.model, data, {});
 			});
 		},
 
@@ -40,8 +47,10 @@ function( Backbone, Communicator, _, L, Form_tmpl ){
 			event.preventDefault();
 
 			// Update the model attributes.
-			var data = Backbone.Syphon.serialize(this);
-			this.model.set(data);
+			var data = Backbone.Syphon.serialize(this, {
+				exclude: ["properties[attachments][]"] // we'll get this from the backend (processed)
+			});
+			this.model.set('properties', data.properties);
 
 			// If files were added, submit the form through Backbone Upload Manager
 			// along with its other fields.

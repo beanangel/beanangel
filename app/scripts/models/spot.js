@@ -17,6 +17,37 @@ function( Backbone, Communicator, _ ) {
 			properties: null
 		},
 
+		initialize: function() {
+			this.setAttachmentsAssociation();
+			this.on('sync', this.setAttachmentsAssociation, this);
+		},
+
+		// Setting a property directly on the model to hold the attachments.
+		// This way we don't have to filter out the attachments anytime we're
+		// submitting the model to the server.
+		setAttachmentsAssociation: function(model, response, options) {
+			function parseOnSync() {
+				if (response && response.result && !_.isEmpty(response.result.spot)) {
+					this.set(this.parse(response.result));
+				}
+			}
+			parseOnSync.call(this);
+			this.attachments = this.get('properties').attachments;
+			delete this.get('properties').attachments;
+		},
+
+		// @override of Backbone.Model#parse
+		// The server conforms to the JSON-API spec and thus wraps objects into
+		// a root key with the object's class name
+		parse: function(response) {
+			if(!_.isEmpty(response.spot)) {
+				return response.spot;
+			} else {
+				// this code path is for when a collection already parsed for us.
+				return response;
+			}
+		},
+
 		isNew: function() {
 			return _.isEmpty(this.get('id'));
 		},
@@ -36,11 +67,10 @@ function( Backbone, Communicator, _ ) {
 		},
 
 		getThumbs: function() {
-			var properties = this.get('properties');
-			if(!properties || properties.attachments.length === 0) {
+			if(_.isEmpty(this.attachments)) {
 				return null;
 			}
-			return _.pluck(properties.attachments, 'thumb');
+			return _.pluck(this.attachments, 'thumb');
 		},
 
 		getName: function() {
