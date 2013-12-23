@@ -19,19 +19,23 @@
 				<input id="title" type="text" value="{{properties.title}}" required aria-required="true" placeholder="Geb dem Guten einen Namen" name="properties[title]" class="form-control">
 			</div>
 		</div>
+		{{#if hasPhotos}}
 		<div class="control-group">
-			<label for="fileupload" class="control-label">{{#if hasPhotos}}Derzeitige Fotos{{else}}Lade ein Foto hoch <abbr role="presentation" title="erforderlich">*</abbr>{{/if}}</label>
+			<label for="attachments" class="control-label">Derzeitige Fotos</label>
 			<div class="controls">
-				{{#if hasPhotos}}
 				<ul class="inline">
 				{{#each thumbs}}
 					<li><img src="{{this}}" height="76"></li>
 				{{/each}}
 				</ul>
-				{{else}}
+			</div>
+		</div>
+		{{/if}}
+		<div class="control-group">
+			<label for="fileupload" class="control-label">Lade Fotos hoch{{#unless hasPhotos}} <abbr role="presentation" title="erforderlich">*</abbr>{{/unless}}</label>
+			<div class="controls">
 				<div id="upload-manager"></div>
 				<span class="help-block">Dieses Foto wird direkt auf der Karte zu sehen sein.</span>
-				{{/if}}	
 			</div>
 		</div>
 		<div class="control-group">
