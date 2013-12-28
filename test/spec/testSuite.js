@@ -4,6 +4,7 @@ define(function() {
 	/* return an array of specs to be run */
 	return {
 		specs: ['spec/collections/spots.js',
+		'spec/models/search.js',
 		'spec/models/spot.js',
 		'spec/views/formView.js',
 		'spec/views/mapView.js',

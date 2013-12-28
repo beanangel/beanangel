@@ -2,13 +2,14 @@ define([
 	'jquery',
 	'backbone',
 	'communicator',
+	'models/search',
 	'collections/spots',
 	'views/mapView',
 	'views/toolView',
 	'hbs!tmpl/map_app'
 ],
 
-function( $, Backbone, Communicator, Spots, MapView, ToolView, Map_tmpl ) {
+function( $, Backbone, Communicator, Search, Spots, MapView, ToolView, Map_tmpl ) {
 	return Backbone.Marionette.Layout.extend({
 		template: Map_tmpl,
 		id: "map-app",
@@ -19,9 +20,25 @@ function( $, Backbone, Communicator, Spots, MapView, ToolView, Map_tmpl ) {
 			tools: "#tools-region"
 		},
 
+		events: {
+			"submit form": "onSearch"
+		},
 
 		onShow: function() {
 			$('#main').prepend(this.$el);
+		},
+
+		onSearch: function(event) {
+			event.preventDefault();
+
+			var query = this.$el.find('input#search').val();
+
+			var search = new Search({query: query});
+			search.save([], {success: function(model, response, options) {
+				Communicator.mediator.trigger("SEARCH:STOP", model);
+			}});
+
+			Communicator.mediator.trigger("SEARCH:START", query);
 		},
 
 		start: function() {
@@ -50,6 +67,10 @@ function( $, Backbone, Communicator, Spots, MapView, ToolView, Map_tmpl ) {
 		registerEvents: function() {
 			Communicator.mediator.on("FORM:OPEN", this.toolView.toggle, this.toolView);
 			Communicator.mediator.on("FORM:CLOSE", this.toolView.toggle, this.toolView);
+		},
+
+		serializeData: function() {
+			return {url: Search.prototype.url()};
 		}
 	});
 });

@@ -16,7 +16,12 @@ body {
 
 #search-region {
   background-color: #ffcaca;
-  height: 5%;
+  height: 2.5em;
+
+  #search {
+    margin: 0.15em;
+    width: 70%;
+  }
 }
 
 #map-region {

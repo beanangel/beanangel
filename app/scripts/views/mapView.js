@@ -25,6 +25,21 @@ function( Backbone, Communicator, _, L, LeafletProviders, Spots, Spot, FormView 
 			this.placeRequestedMarkers();
 		},
 
+		setLocation: function(latLng) {
+			// animate to that location at closest zoom level
+			this.map.setView(latLng, Infinity, {animate: true});
+		},
+
+		setBounds: function(bounds) {
+			if(_.isObject(bounds)) {
+				var southWest = [bounds['SW'].Latitude, bounds['SW'].Longitude];
+				var northEast = [bounds['NE'].Latitude, bounds['NE'].Longitude];
+				this.map.fitBounds([southWest, northEast]);
+			} else {
+				this.map.fitBounds(bounds);
+			}
+		},
+
 		locate: function() {
 			this.map.locate();
 		},
@@ -41,8 +56,7 @@ function( Backbone, Communicator, _, L, LeafletProviders, Spots, Spot, FormView 
 		},
 
 		onLocationFound: function(e) {
-			// animate to that location at closest zoom level
-			this.map.setView(e.latlng, Infinity, {animate: true});
+			this.setLocation(e.latlng);
 		},
 
 		onLocationError: function(e) {
@@ -88,6 +102,11 @@ function( Backbone, Communicator, _, L, LeafletProviders, Spots, Spot, FormView 
 			formView.openPopup();
 		},
 
+		onSearchSuccess: function(searchModel) {
+			var result = searchModel.get('results')[0];
+			this.setBounds(result.bounds);
+		},
+
 		onEachFeatureSetupPopup: function(feature, layer) {
 			if (feature && layer) {
 				var mapView = this;
@@ -100,6 +119,7 @@ function( Backbone, Communicator, _, L, LeafletProviders, Spots, Spot, FormView 
 		registerEvents: function() {
 			this.map.on('locationfound', this.onLocationFound, this);
 			this.map.on('locationerror', this.onLocationError, this);
+			Communicator.mediator.on("SEARCH:STOP", this.onSearchSuccess, this);
 			Communicator.mediator.on("LOCATOR:CLICK", this.locate, this);
 			Communicator.mediator.on("MARK_POSITION:CLICK", this.mark, this);
 		},
