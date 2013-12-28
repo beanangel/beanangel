@@ -1,9 +1,9 @@
 define([
 	'backbone',
-	'models/spot',
-	'communicator'
+	'communicator',
+	'models/spot'
 ],
-function( Backbone, Spot, Communicator ) {
+function( Backbone, Communicator, Spot ) {
     'use strict';
 
 	/* Return a collection class definition */

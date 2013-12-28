@@ -1,14 +1,14 @@
 define([
 	'jquery',
 	'backbone',
+	'communicator',
 	'collections/spots',
 	'views/mapView',
 	'views/toolView',
-	'communicator',
 	'hbs!tmpl/map_app'
 ],
 
-function( $, Backbone, Spots, MapView, ToolView, Communicator, Map_tmpl ) {
+function( $, Backbone, Communicator, Spots, MapView, ToolView, Map_tmpl ) {
 	return Backbone.Marionette.Layout.extend({
 		template: Map_tmpl,
 		id: "map-app",
