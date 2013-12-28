@@ -25,7 +25,7 @@ function( Backbone ) {
 		},
 
 		logMediatorEvents: function(eventName, options) {
-			if(_.isEmpty(options)) {
+			if(_.isEmpty(options) || _.isObject(options)) {
 				console.log(eventName);
 			} else {
 				console.log(eventName, options);
