@@ -4,7 +4,12 @@ Be An Angel
 Milestones
 ----------
 
-### Apple Pie (2013-12-21) ####
+### Baumkuchen (2014-01-31) :hourglass_flowing_sand: ####
+
+Will have a nicer dialog with space for all those fields and (scrollable?) information. Might include a tiny gallery on the spot detail dialog.
+
+
+### Apple Pie (2013-12-21) :white_check_mark: ####
 
 Will support the following: Map is displayed, let the app locate you (or pull up an address form), optionally upload a photo.
 
