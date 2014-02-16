@@ -21,7 +21,7 @@ function( $, Backbone, Communicator, Search, Spots, MapView, ToolView, Map_tmpl 
 		},
 
 		events: {
-			"submit form": "onSearch"
+			"submit #search-region form": "onSearch"
 		},
 
 		onShow: function() {
