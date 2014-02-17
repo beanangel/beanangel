@@ -107,7 +107,9 @@ function( Backbone, Communicator, _, L, LeafletProviders, Spots, Spot, FormView 
 
 		onSearchSuccess: function(searchModel) {
 			var result = searchModel.get('results')[0];
-			this.setBounds(result.bounds);
+			if(!_.isEmpty(result) && !_.isEmpty(result.bounds)) {
+				this.setBounds(result.bounds);
+			}
 		},
 
 		onEachFeatureSetupPopup: function(feature, layer) {
