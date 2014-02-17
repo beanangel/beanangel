@@ -25,15 +25,19 @@ require.config({
         // backbone upload manager and its dependencies
         "jquery.ui.widget": ["jquery"],
         "jquery.file_upload": ["jquery", "jquery.ui.widget", 'jquery.iframe-transport'],
-        "backbone_upload_manager": [
-            'jquery.file_upload',
-            'backbone_defered_view_loader'
-        ]
+        "backbone_defered_view_loader": {
+            deps: ['backbone'],
+            exports: 'Backbone.DeferedView'
+        },
+        "backbone_upload_manager": {
+            deps: ['backbone', 'jquery.file_upload', 'backbone_defered_view_loader'],
+            exports: 'Backbone.UploadManager'
+        }
     },
 
     paths: {
         jquery: '../bower_components/jquery/jquery',
-        backbone: '../bower_components/backbone-amd/backbone',
+        backbone: '../bower_components/backbone/backbone',
         underscore: '../bower_components/underscore-amd/underscore',
 
         /* alias all marionette libs */
