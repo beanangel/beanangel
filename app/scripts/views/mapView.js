@@ -76,6 +76,9 @@ function( Backbone, Communicator, _, L, LeafletProviders, Spots, Spot, FormView 
 
 		// TODO make private
 		setupMap: function() {
+			// configure Leaflet
+			L.Icon.Default.imagePath = 'bower_components/leaflet/images';
+
 			var location = [50.119, 8.685]; // Frankfurt
 			this.map = L.map('map');
 			this.map.setView(location, 13);

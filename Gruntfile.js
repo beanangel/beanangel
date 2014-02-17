@@ -262,7 +262,13 @@ module.exports = function (grunt) {
                         '*.{ico,txt}',
                         '.htaccess',
                         'images/{,*/}*.{webp,gif}',
-                        'bower_components/requirejs/require.js'
+                        'bower_components/backbone-upload-manager/css/backbone.upload-manager.css',
+                        'bower_components/backbone-upload-manager/images/sprite.png',
+                        'bower_components/leaflet/images/*',
+                        'bower_components/sass-bootstrap/img/*',
+                        'templates/upload-manager.main.tmpl',
+                        'templates/upload-manager.file.tmpl',
+						'bower_components/requirejs/require.js'
                     ]
                 }]
             }
