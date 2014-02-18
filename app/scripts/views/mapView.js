@@ -79,9 +79,20 @@ function( Backbone, Communicator, _, L, LeafletProviders, Spots, Spot, FormView 
 			// configure Leaflet
 			L.Icon.Default.imagePath = 'bower_components/leaflet/images';
 
-			var location = [50.119, 8.685]; // Frankfurt
+			// configure map and view
 			this.map = L.map('map');
-			this.map.setView(location, 13);
+//          var location = [50.119, 8.685]; // Frankfurt
+			var location = [16.50, 18.5794645]; // World
+			var height = $(window).height();
+			var zoom = 3;
+			if (height < 500) {
+				zoom = 1;
+			} else if (height < 800) {
+				zoom = 2;
+			}
+			this.map.setView(location, zoom);
+
+			// configure tile provider
 			L.tileLayer.provider("Nokia.normalDay").addTo(this.map);
 
 			// add a GeoJSON layer
