@@ -9,7 +9,7 @@ function( Backbone, Communicator, Spot ) {
 	/* Return a collection class definition */
 	return Backbone.Collection.extend({
 		model: Spot,
-		url: Communicator.backendURL + "/spots",
+		url: Spot.prototype.urlRoot,
 
 		parse: function(response) {
 			return response.spots;
