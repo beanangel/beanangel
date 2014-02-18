@@ -9,7 +9,7 @@ define([
 	'views/formView'
 ],
 function( Backbone, Communicator, _, L, LeafletProviders, Spots, Spot, FormView ){
-    'use strict';
+	'use strict';
 
 	return Backbone.View.extend({
 
@@ -81,7 +81,7 @@ function( Backbone, Communicator, _, L, LeafletProviders, Spots, Spot, FormView 
 
 			// configure map and view
 			this.map = L.map('map');
-//          var location = [50.119, 8.685]; // Frankfurt
+//			var location = [50.119, 8.685]; // Frankfurt
 			var location = [16.50, 18.5794645]; // World
 			var height = $(window).height();
 			var zoom = 3;
